@@ -1,5 +1,8 @@
 onEvent("Chatbot", "click", function() {
-sendtomodel();
+console.log("clicked");
+var input=getValue("chat-input");
+console.log(input);
+    sendtomodel();
 })
 
 function sendtomodel(){
@@ -34,3 +37,4 @@ query({
 
 });
 }
+setText("result", "Test message")

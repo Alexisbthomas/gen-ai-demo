@@ -10,7 +10,16 @@
 </head>
 <body>
     <h1>Chatbot</h1>
-    <button id="Chatbot">Chatbot</button>
+    <input type="text" id="chat-input" class="form-control">
+    <button id="Chatbot" class="btn btn-primary">Answer</button>
+    <div id="Chatbotreply">
+        <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Bot Answer</h5>
+        <p class="card-text" id="result">Content will appear here</p>
+    </div>
+</div>
+    </div>
     <script src="helpers-full.js"></script>
     <script src="secret-variables.js"></script>
     <script src="script.js"></script>
