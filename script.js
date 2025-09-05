@@ -1,7 +1,15 @@
+let botReply=""
 onEvent("Chatbot", "click", function() {
 console.log("clicked");
 var input=getValue("chat-input");
 console.log(input);
+if (input===""){
+    setText("result", "⚠️ Please enter something!");
+    setProperty("result", "color", "red");
+} else {
+    setText("result","Thinking💭...");
+    setProperty("result","color","green");
+}
     sendtomodel();
 })
 
@@ -32,9 +40,12 @@ query({
     model: "meta-llama/Llama-3.1-8B-Instruct:fireworks-ai",
 }).then((response) => {
     console.log(JSON.stringify(response));
+    console.log(response);
+    console.log(response.choices);
+    console.log(response.choices[0]);
+    console.log(response.choices[0].message);
     console.log(response.choices[0].message.content);
-
-
+   botReply = response.choices[0].message.content;
+   console.log("botReply",botReply);
 });
 }
-setText("result", "Test message")
