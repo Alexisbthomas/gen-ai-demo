@@ -7,14 +7,15 @@ userPrompt=getValue("chat-input");
 console.log("userPrompt",userPrompt);
 console.log(input);
 if (input===""){
-    setText("result", "⚠️ Please enter something!");
-    setProperty("result", "color", "red");
+    setText("validation-message", "⚠️ Please enter something!");
+    setProperty("validation-message", "color", "red");
+    return;
 } else {
-    setText("result","Thinking💭...");
-    setProperty("result","color","green");
-    sendtomodel();
-}})
-    
+    setText("validation-message","Thinking💭...");
+    setProperty("validation-message","color","green");
+     sendtomodel();
+}});
+   
 
 function sendtomodel(){
 async function query(data) {
@@ -54,5 +55,6 @@ query({
    setText("result",botReply)
    setProperty("result","background","black");
    setProperty("result","color","red");
-});
-}
+   setText("validation-message","")
+})};
+
