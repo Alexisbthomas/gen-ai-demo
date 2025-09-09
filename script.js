@@ -1,7 +1,10 @@
 let botReply=""
+let userPrompt="";
 onEvent("Chatbot", "click", function() {
 console.log("clicked");
 var input=getValue("chat-input");
+userPrompt=getValue("chat-input");
+console.log("userPrompt",userPrompt);
 console.log(input);
 if (input===""){
     setText("result", "⚠️ Please enter something!");
@@ -9,9 +12,9 @@ if (input===""){
 } else {
     setText("result","Thinking💭...");
     setProperty("result","color","green");
-}
     sendtomodel();
-})
+}})
+    
 
 function sendtomodel(){
 async function query(data) {
@@ -34,7 +37,7 @@ query({
     messages: [
         {
             role: "user",
-            content: "How to make scrambled eggs?",
+            content: userPrompt,
         },
     ],
     model: "meta-llama/Llama-3.1-8B-Instruct:fireworks-ai",
@@ -47,5 +50,9 @@ query({
     console.log(response.choices[0].message.content);
    botReply = response.choices[0].message.content;
    console.log("botReply",botReply);
+   console.log(userPrompt);
+   setText("result",botReply)
+   setProperty("result","background","black");
+   setProperty("result","color","red");
 });
 }
